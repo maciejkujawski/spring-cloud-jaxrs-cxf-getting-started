@@ -1,0 +1,19 @@
+---
+server:
+  port: 8761
+
+management:
+  security:
+    enabled: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # Get the time interval with which the task that expires instances should wake up and run
+    evictionIntervalTimerInMs: 10000
