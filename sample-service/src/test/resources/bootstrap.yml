@@ -1,0 +1,12 @@
+spring:
+  application:
+      name: sample-service
+  cloud:
+      config:
+        enabled: false
+        discovery:
+          enabled: false
+
+eureka:
+  client:
+    enabled: false
