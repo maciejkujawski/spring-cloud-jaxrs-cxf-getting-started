@@ -79,8 +79,14 @@ More information can be found at: http://cloud.spring.io/spring-cloud-static/spr
 
 # Run
 
+Before Running this run Discovery Service.
+
 From IDE run: `org.sample.config.server.ConfigServerApplication.main`
 
 From terminal run:
 
 `mvn spring-boot:run`
+
+Check configuration is available: http://localhost:8888/sample-service/default for `sample-service`
+
+Check your service is available in Eureka: http://localhost:8761/
