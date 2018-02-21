@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 /**
@@ -21,16 +20,7 @@ public class Config
 	@ConditionalOnMissingBean
 	public JacksonJsonProvider jsonProvider(ObjectMapper objectMapper)
 	{
-		JacksonJaxbJsonProvider provider = new JacksonJaxbJsonProvider();
-		provider.setMapper(objectMapper);
+		JacksonJsonProvider provider = new JacksonJsonProvider();
 		return provider;
 	}
-
-	@Bean
-	@ConditionalOnMissingBean
-	public ObjectMapper objectMapper()
-	{
-		return new ObjectMapper();
-	}
-
 }

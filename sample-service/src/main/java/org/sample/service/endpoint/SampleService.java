@@ -15,12 +15,10 @@ import org.springframework.stereotype.Service;
 /**
  * @author Maciej Kujawski <kujawski.maciej@gmail.com>
  */
-@Service
 @RefreshScope
-@Path("/sample")
 @Logging
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Service
+@Path("/sample")
 public class SampleService
 {
 	@Value("${common.property:default}")
@@ -28,6 +26,8 @@ public class SampleService
 
 	@GET
 	@Path("/hello")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Hello sayHello()
 	{
 		Hello hello = new Hello();

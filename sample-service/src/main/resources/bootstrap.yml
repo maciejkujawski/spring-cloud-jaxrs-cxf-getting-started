@@ -3,7 +3,6 @@ spring:
     name: sample-service
   cloud:
     config:
-      fail-fast: true
       enabled: true
       discovery:
         enabled: true

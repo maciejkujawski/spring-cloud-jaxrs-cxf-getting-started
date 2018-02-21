@@ -82,7 +82,6 @@ Not much to say here. Setting name of our microservice - the most important and 
         name: sample-service
       cloud:
         config:
-          fail-fast: true
           enabled: true
           discovery:
             enabled: true
@@ -90,11 +89,12 @@ Not much to say here. Setting name of our microservice - the most important and 
             
 # application.yml
 
-This microservice will be served by default on port 8080 and Spring MVC context will be served on servlet-path: /admin. I called it admin since the microservice is using Spring MVC only because `spring-boot-starter-actuator` which serves nice out of the box management api like /health and /refresh which are useful in microservices architecture.
+This microservice will be served by default on port 8080 and Spring MVC context will be served on servlet-path: `/`. Spring MVC serves nice out of the box 
+management api like /health and /refresh which are useful in microservices architecture (thanks to dependency: `spring-boot-starter-actuator`).
+CXF REST endpoints will be served under `/services` which is out of the box value for `cxf-spring-boot-starter-jaxrs`. 
 
     server:
       port: 8080
-      servlet-path: /admin
       
 By default management api is secured using OAuth to disable this for demo purpose we have configuration:
 
@@ -102,13 +102,44 @@ By default management api is secured using OAuth to disable this for demo purpos
       security:
         enabled: false
       
+Setting client to Service Discovery is done by:
+
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+          
+We are just pointing the url to Service Discovery (Eureka).
+
 The configuration of cxf is:
 
     cxf:
-      path: /
-      servlet.init:
-        service-list-path: /info
       jaxrs:
         component-scan: true
         
-Which says that JAX-RS services are served under /. There is additional /info endpoint which gives brief information about CXF services and `component-scan: true` tells that all Spring @Components with JAX-RS annotation @Path will be automatically exposed as JAX-RS Services.  
+Which says that JAX-RS services are served under `/services` (default value of `cxf.path` property). `component-scan: true` tells that all Spring `@Component`
+ or `@Service` annotated classes with JAX-RS annotation `@Path` will be automatically exposed as JAX-RS Services.  
+
+## Advanced: changing context path of cxf services
+
+By default JAX-RS CXF services will be served under `/services`. If you want to change that to main path `/` you will cause Spring 
+Actuator endpoints stop working. So to solve it we need to move Spring Actuator to different context path, eg.: `/admin` and tell Eureka where is health 
+endpoint. 
+
+    server:
+      port: 8080
+      servlet-path: /admin
+      
+    cxf:
+      path: /
+      jaxrs:
+        component-scan: true
+        
+    eureka:
+      client:
+        serviceUrl:
+          defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka/
+      instance:
+        # default is /info and /health but our management api is under /admin
+        statusPageUrlPath: /admin/info
+        healthCheckUrlPath: /admin/health
