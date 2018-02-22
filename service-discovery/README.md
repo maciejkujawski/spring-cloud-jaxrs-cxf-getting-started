@@ -1,3 +1,15 @@
+# Run
+
+Run this at first place.
+
+From IDE run: `org.sample.service.discovery.ServiceDiscoveryApplication.main`
+
+From terminal run:
+
+`mvn spring-boot:run`
+
+Check Eureka panel is available: http://localhost:8761/
+
 # Dependencies
 
 pom.xml:

@@ -1,3 +1,18 @@
+# Run
+
+Before Running this run Discovery Service.
+
+From IDE run: `org.sample.config.server.ConfigServerApplication.main`
+
+From terminal run:
+
+`mvn spring-boot:run`
+
+Check configuration is available: http://localhost:8888/microservice2/default for `microservice2`
+
+Check your service is available in Eureka: http://localhost:8761/ and http://localhost:8761/eureka/apps - second link is what other microservices can see - 
+it may take up to 30 seconds it's available. 
+
 # Introduction
 
 * Clones repository https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git on startup and watches for changes.
@@ -77,16 +92,3 @@ Parameter `clone-on-start` cause repository is cloned to tmp directory on every 
 
 More information can be found at: http://cloud.spring.io/spring-cloud-static/spring-cloud-config/1.4.2.RELEASE/single/spring-cloud-config.html
 
-# Run
-
-Before Running this run Discovery Service.
-
-From IDE run: `org.sample.config.server.ConfigServerApplication.main`
-
-From terminal run:
-
-`mvn spring-boot:run`
-
-Check configuration is available: http://localhost:8888/microservice2/default for `microservice2`
-
-Check your service is available in Eureka: http://localhost:8761/

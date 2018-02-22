@@ -1,4 +1,19 @@
-# Dependencies
+# Run
+
+Before Running this run Discovery Service and Config Server.
+
+From IDE run: `org.sample.microservice2.Microservice2Application.main`
+
+From terminal run:
+
+`mvn spring-boot:run`
+
+Check your service is available in Eureka: http://localhost:8761/ and http://localhost:8761/eureka/apps - second link is what other microservices can see - 
+it may take up to 30 seconds it's available. 
+
+Call introduction endpoint: http://localhost:8082/services/say/hello
+
+# Spring Cloud Dependencies
 
 The basic version of pom.xml for each microservice may look like that:
 
@@ -120,7 +135,7 @@ The configuration of cxf is:
 Which says that JAX-RS services are served under `/services` (default value of `cxf.path` property). `component-scan: true` tells that all Spring `@Component`
  or `@Service` annotated classes with JAX-RS annotation `@Path` will be automatically exposed as JAX-RS Services.  
 
-## Advanced: changing context path of cxf services
+# Advanced: changing context path of cxf services
 
 By default JAX-RS CXF services will be served under `/services`. If you want to change that to main path `/` you will cause Spring 
 Actuator endpoints stop working. So to solve it we need to move Spring Actuator to different context path, eg.: `/admin` and tell Eureka where is health 

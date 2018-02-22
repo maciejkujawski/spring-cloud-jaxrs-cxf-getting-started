@@ -1,4 +1,19 @@
-# Dependencies
+# Run
+
+Before Running this run Discovery Service and Config Server and microservice1.
+
+From IDE run: `org.sample.microservice1.Microservice1Application.main`
+
+From terminal run:
+
+`mvn spring-boot:run`
+
+Check your service is available in Eureka: http://localhost:8761/ and http://localhost:8761/eureka/apps - second link is what other microservices can see - 
+it may take up to 30 seconds it's available. 
+
+Call proxy endpoint: http://localhost:8081/services/proxy/hello
+
+# Spring Cloud Dependencies
 
 The basic version of pom.xml for each microservice may look like that:
 
