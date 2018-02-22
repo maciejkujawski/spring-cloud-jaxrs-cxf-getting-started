@@ -69,7 +69,7 @@ This git repository has public access so you don't need any credentials to clone
 
 Parameter `searchPaths` tells where in cloned repository search for configuration files (.properties, .yml). This configuration tells that files are in 
 /config folder and also they can be found under /config/{application}, where `{application}` means application name, 
-ex: sample-service (application name is defined in bootstrap.yml: `spring.application.name`).
+ex: microservice2 (application name is defined in bootstrap.yml: `spring.application.name`).
 
 Parameter `clone-on-start` cause repository is cloned to tmp directory on every startup.
 
@@ -87,6 +87,6 @@ From terminal run:
 
 `mvn spring-boot:run`
 
-Check configuration is available: http://localhost:8888/sample-service/default for `sample-service`
+Check configuration is available: http://localhost:8888/microservice2/default for `microservice2`
 
 Check your service is available in Eureka: http://localhost:8761/

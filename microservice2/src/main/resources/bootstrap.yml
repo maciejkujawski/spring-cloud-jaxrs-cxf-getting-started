@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: microservice2
+  cloud:
+    config:
+      enabled: true
+      discovery:
+        enabled: true
+        serviceId: CONFIG-SERVER
+
+
+

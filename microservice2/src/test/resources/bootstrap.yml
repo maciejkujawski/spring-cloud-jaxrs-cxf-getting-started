@@ -1,0 +1,12 @@
+spring:
+  application:
+      name: microservice2
+  cloud:
+      config:
+        enabled: false
+        discovery:
+          enabled: false
+
+eureka:
+  client:
+    enabled: false
