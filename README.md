@@ -1,6 +1,6 @@
 # Introduction
 
-Here you can find "Hello World" project of Spring Cloud (http://projects.spring.io/spring-cloud/) microservices based on JAX-RS CXF (http://cxf.apache.org/).
+Here you can find "Hello World" project of [Spring Cloud](http://projects.spring.io/spring-cloud/) microservices based on JAX-RS [Apache CXF](http://cxf.apache.org/).
 
 > Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of loosely coupled services, which implement business capabilities. The microservice architecture enables the continuous delivery/deployment of large, complex applications. It also enables an organization to evolve its technology stack.
 
@@ -23,6 +23,8 @@ In real life building microservices will require some infrastructure where most 
                     -------------------          ---------------                       
 </pre>
 
+This example shows two microservices where first one is calling second one using Service Discovery and [Feign Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) build on JAX-RS annotations. Microservice2 is executing it's logic based on config-server.
+
 # Structure of repository
 
 Every folder in repository holds separate project which in real life could be hold in separate git repository. I have structured this is such way cause it 
@@ -34,20 +36,20 @@ Holds configuration of services in single git location. Changing configuration r
 
 Running Spring microservice with some profile, ex: `production`, enables to configure your microservice for given environment only. You can have file: `sample-service-production.properties` which will override properties hold in `sample-service.properties` and `application.properties` when your microservice will be run with Spring's Profile: `production` and it's name is `sample-service`.
 
-This repository is used by config-server to provide configuration for microservices.
+This repository is used by config-server to provide configuration for microservices. Check here for [more description](./config/README.md)
 
 ## /config-server
 
-Implementation of Spring Boot Config Server. Configuration of Config Server points /config folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices are kept. 
+Implementation of Spring Boot Config Server. Configuration of Config Server points /config folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices are kept. Check here for [more description](./config-server/)
 
 ## /service-discovery-registry
 
-Service Discovery implementation based on Eureka
+Service Discovery implementation based on Eureka. Check here for [more description](./service-discovery-registry/)
 
-## /sample-service
+## /smicroservice1
 
-Example of sample service based on Spring Cloud and CXF. The most interesting part of that example
+Example of sample microservice based on Spring Cloud and CXF calling other microservice using [Feign Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) and Service Discovery (Eureka). The most interesting part of that example. Check here for [more description](./microservice1/)
 
-## /sample-service-client
+## /microservice2
 
-Example of microservice talking to sample-service
+Example of sample microservice based on Spring Cloud and CXF. The most interesting part of that example. Check here for [more description](./microservice2/)
