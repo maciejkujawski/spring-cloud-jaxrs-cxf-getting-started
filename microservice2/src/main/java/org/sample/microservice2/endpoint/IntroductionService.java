@@ -13,7 +13,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Maciej Kujawski <kujawski.maciej@gmail.com>
+ * @author Maciej Kujawski
  */
 @RefreshScope
 @Logging

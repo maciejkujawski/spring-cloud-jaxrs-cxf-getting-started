@@ -1,7 +1,7 @@
 package org.sample.microservice1.client;
 
 /**
- * @author Maciej Kujawski <maciej.kujawski@seamless.se>
+ * @author Maciej Kujawski
  */
 public class Hello
 {

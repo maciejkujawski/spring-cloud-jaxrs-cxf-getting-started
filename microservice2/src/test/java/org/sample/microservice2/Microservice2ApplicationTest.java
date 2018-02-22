@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- * @author Maciej Kujawski <kujawski.maciej@gmail.com>
+ * @author Maciej Kujawski
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
