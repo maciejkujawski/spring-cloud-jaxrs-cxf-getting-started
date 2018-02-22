@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableDiscoveryClient
-@EnableFeignClients(defaultConfiguration = FeignConfiguration.class)
+@EnableFeignClients
 public class Microservice1Application
 {
 	public static void main(String[] args)

@@ -120,7 +120,91 @@ The configuration of cxf is:
 Which says that JAX-RS services are served under `/services` (default value of `cxf.path` property). `component-scan: true` tells that all Spring `@Component`
  or `@Service` annotated classes with JAX-RS annotation `@Path` will be automatically exposed as JAX-RS Services.  
 
-## Advanced: changing context path of cxf services
+# Feign Client
+
+Communication between microservice1 and microservice2 is accomplished using Feign Client. [Feign Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) use Service Discovery and [Ribon: Client Side Load 
+Balancer](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-ribbon.html)
+ to successfully call other microservice. Feign Client hides boilerplate code of creating REST implementations of clients. In our case we will create only 
+ interface with JAX-RS annotations which will define REST client:
+ 
+    @Path("/say")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @FeignClient(path="/services", name = "MICROSERVICE2")
+    public interface IntroductionServiceClient
+    {
+    	@GET
+    	@Path("/hello")
+    	Hello sayHello();
+    }
+    
+You can see that we have annotation `@FeignClient` which will create automatically Spring Bean which will be in fact JAX-RS Client to our service 
+`microservice2`. It will automatically fetch available instance of `MICROSERVICE2` from Service Discovery. If there are more instances of desired service 
+Ribon load balancer will do the job choosing the right one (by default simple round robin algorithm is used for that).
+ 
+To enable creation of Feign Clients we need to annotate our application with `@EnableFeignClients`. In order to turn on JAX-RS annotation support for Feign 
+Clients we have to create beans:
+
+    /**
+     * Support of JAX-RS annotations for creating Feign Clients
+     *
+     * @return
+     */
+    @Bean
+    public Contract feignContract()
+    {
+    	return new JAXRSContract();
+    }
+    
+    /**
+     * Serialization of objects using default object mapper
+     *
+     * @param objectMapper
+     * @return
+     */
+    @Bean
+    public Encoder feignEncoder(ObjectMapper objectMapper)
+    {
+    	return new JacksonEncoder(objectMapper);
+    }
+    
+    /**
+     * Deserialization of objects using default object mapper
+     *
+     * @param objectMapper
+     * @return
+     */
+    @Bean
+    public Decoder feignDecoder(ObjectMapper objectMapper)
+    {
+    	return new JacksonDecoder(objectMapper);
+    }
+
+## pom.xml dependencies
+
+    <!-- Feign Client -->
+    <dependency>
+    	<groupId>org.springframework.cloud</groupId>
+    	<artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+    <!-- enable JAX-RS annotations for building Feign clients -->
+    <dependency>
+    	<groupId>io.github.openfeign</groupId>
+    	<artifactId>feign-jaxrs</artifactId>
+    	<exclusions>
+    		<!-- conflicts with jaxrs 2.1 from cxf causing runtime problems: method not found and some nasty logs on error level when requesting not mapped path -->
+    		<exclusion>
+    			<groupId>javax.ws.rs</groupId>
+    			<artifactId>jsr311-api</artifactId>
+    		</exclusion>
+    	</exclusions>
+    </dependency>
+    <dependency>
+    	<groupId>io.github.openfeign</groupId>
+    	<artifactId>feign-jackson</artifactId>
+    </dependency>
+
+# Advanced: changing context path of cxf services
 
 By default JAX-RS CXF services will be served under `/services`. If you want to change that to main path `/` you will cause Spring 
 Actuator endpoints stop working. So to solve it we need to move Spring Actuator to different context path, eg.: `/admin` and tell Eureka where is health 
