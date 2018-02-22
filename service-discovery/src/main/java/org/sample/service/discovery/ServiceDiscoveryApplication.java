@@ -1,4 +1,4 @@
-package org.sample.microservice1.discovery.registry;
+package org.sample.service.discovery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
