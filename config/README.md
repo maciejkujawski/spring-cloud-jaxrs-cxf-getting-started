@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 Holds configuration of services in single git location. Changing configuration requires only push to master branch (default place from where configuration is
  pulled). Common configuration is hold in `application.properties/yml` file. Application specific configuration is kept in `{application_name}

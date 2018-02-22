@@ -8,7 +8,7 @@ From terminal run:
 
 `mvn spring-boot:run`
 
-Check configuration is available: http://localhost:8888/microservice2/default for `microservice2`
+Check configuration is available: http://localhost:8888/microservice2/default for `microservice2` and profile `default`.
 
 Check your service is available in Eureka: http://localhost:8761/ and http://localhost:8761/eureka/apps - second link is what other microservices can see - 
 it may take up to 30 seconds it's available. 
