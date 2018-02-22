@@ -34,22 +34,20 @@ seems easier to clone one repository with documentation and all examples. There'
 
 Holds configuration of services in single git location. Changing configuration requires only push to master branch (default place from where configuration is pulled). Common configuration may be served in `application.properties/yml` file. Application specific configuration is kept in `{application_name}.properties/yml` files. So for example: `sample-service.properties` holds configuration of microservice called `sample-service`.
 
-Running Spring microservice with some profile, ex: `production`, enables to configure your microservice for given environment only. You can have file: `sample-service-production.properties` which will override properties hold in `sample-service.properties` and `application.properties` when your microservice will be run with Spring's Profile: `production` and it's name is `sample-service`.
-
 This repository is used by config-server to provide configuration for microservices. Check here for [more description](./config/README.md)
 
 ## /config-server
 
-Implementation of Spring Boot Config Server. Configuration of Config Server points /config folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices is kept. Check here for [more description](./config-server/)
+Implementation of Spring Boot Config Server. Configuration of Config Server points `/config` folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices is kept. Check here for [more description](./config-server/)
 
 ## /service-discovery-registry
 
 Service Discovery implementation based on Eureka. Check here for [more description](./service-discovery-registry/)
 
-## /smicroservice1
+## /microservice1
 
-Example of sample microservice based on Spring Cloud and CXF calling other microservice using [Feign Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) and Service Discovery (Eureka). The most interesting part of that example. Check here for [more description](./microservice1/)
+Example of simple microservice based on Spring Cloud and CXF calling other microservice using [Feign Client](https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html) and Service Discovery (Eureka). The most interesting part of that example. Check here for [more description](./microservice1/)
 
 ## /microservice2
 
-Example of sample microservice based on Spring Cloud and CXF. The most interesting part of that example. Check here for [more description](./microservice2/)
+Example of simple microservice based on Spring Cloud and CXF. The most interesting part of that example. Check here for [more description](./microservice2/)
