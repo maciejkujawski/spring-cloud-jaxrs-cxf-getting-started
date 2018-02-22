@@ -40,7 +40,7 @@ This repository is used by config-server to provide configuration for microservi
 
 ## /config-server
 
-Implementation of Spring Boot Config Server. Configuration of Config Server points /config folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices are kept. Check here for [more description](./config-server/)
+Implementation of Spring Boot Config Server. Configuration of Config Server points /config folder of https://github.com/maciejkujawski/spring-cloud-jaxrs-cxf-getting-started.git as a root directory where configuration of your microservices is kept. Check here for [more description](./config-server/)
 
 ## /service-discovery-registry
 
