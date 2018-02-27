@@ -8,5 +8,16 @@ spring:
         enabled: true
         serviceId: CONFIG-SERVER
 
-
+# disable config server and service auto registration for test purpose
+---
+spring:
+  profiles: test
+  cloud:
+      config:
+        enabled: false
+        discovery:
+          enabled: false
+      service-registry:
+        auto-registration:
+          enabled: false
 
